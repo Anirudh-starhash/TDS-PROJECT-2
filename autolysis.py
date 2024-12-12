@@ -1,8 +1,16 @@
-import requests
+# for connecting with llm and sending data requests and json 
+import requests 
 import json
+
+# for aiproxy token from environment variables os
 import os
 
-AI_PROXY_TOKEN = os.getenv("AI_PROXY_TOKEN")  # Correct usage
+#pandas and numpy for manipulating the dataframe 
+import pandas as pd
+import numpy as np
 
+# for data visualization
+import seaborn as sb
 
- 
+AIPROXY_TOKEN = os.environ["AIPROXY_TOKEN"]
+
