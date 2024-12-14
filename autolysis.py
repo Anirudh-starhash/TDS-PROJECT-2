@@ -1,10 +1,12 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
+#   "requests",
 #   "seaborn",
 #   "pandas",
 #   "matplotlib",
 #   "httpx",
+#   "scikit-learn",
 #   "chardet",
 #   "numpy",
 # ]
@@ -304,7 +306,7 @@ def save_to_readme(storytelling_result, tool, directory_name, tool_name="storyte
         readme_path = os.path.join(folder_path, "README.md")
 
         # Open the README.md file to write the storytelling results
-        with open(readme_path, "w") as readme_file:
+        with open(readme_path, "w",encoding="utf-8") as readme_file:
             if storytelling_result:
                 # Write the tool name as a header
                 readme_file.write(f"## {tool_name} Result for {directory_name}.csv:\n\n")
