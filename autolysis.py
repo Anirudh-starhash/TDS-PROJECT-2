@@ -389,7 +389,7 @@ if  __name__ == "__main__" :
         analysis_results = {}
         chart_paths = []
         
-        directory_name = create_directory_for_file(os.path.basename(args.file_name))
+        directory_name = create_directory_for_file(args.file_name)
         for tool in tools:
             if tool["name"] == "storytelling":
                 continue
