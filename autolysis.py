@@ -72,6 +72,23 @@ def define_analysis_tools():
             }
         },
         {
+            "name": "correlation_analysis",
+            "description": "Compute the correlation matrix for numeric data.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {"type": "number"}
+                        }
+                    }
+                },
+                "required": ["data"]
+            }
+        },
+        {
             "name": "storytelling",
             "description": "Write a story about the dataset analysis including data, insights, and implications.",
             "parameters": {
@@ -115,7 +132,8 @@ def request_llm_storytelling(info, analysis_results, chart_paths):
             "messages": [
                 {"role": "system", "content": "You are a helpful storytelling assistant."},
                 {"role": "user", "content": prompt}
-            ]
+            ],
+            "detail": "low" 
         }
 
         # Make the API call
@@ -133,12 +151,12 @@ def request_llm_storytelling(info, analysis_results, chart_paths):
             formatted_story = (
                 f"### Narrative:\n\n"
                 f"#### Summary of the Dataset:\n"
-                f"- **Total Entries**: {info.get('total_entries', 'N/A')}\n"
-                f"- **Missing Values**: {', '.join(f'{key}: {value}' for key, value in info.get('missing_values', {}).items())}\n"
-                f"- **Outliers**: {', '.join(f'{outlier}' for outlier in analysis_results.get('outliers', []))}\n\n"
+                f"- *Total Entries*: {info.get('total_entries', 'N/A')}\n"
+                f"- *Missing Values*: {', '.join(f'{key}: {value}' for key, value in info.get('missing_values', {}).items())}\n"
+                f"- *Outliers*: {', '.join(f'{outlier}' for outlier in analysis_results.get('outliers', []))}\n\n"
                 f"#### The Analysis Performed:\n"
-                f"- **Outlier Detection**: {analysis_results.get('outlier_detection', 'N/A')}\n"
-                f"- **Correlation Analysis**: {analysis_results.get('correlation_analysis', 'N/A')}\n\n"
+                f"- *Outlier Detection*: {analysis_results.get('outlier_detection', 'N/A')}\n"
+                f"- *Correlation Analysis*: {analysis_results.get('correlation_analysis', 'N/A')}\n\n"
                 f"#### Insights Discovered:\n"
                 f"{story_content}\n\n"
                 f"#### Implications of the Findings:\n"
@@ -279,6 +297,42 @@ def visualize_outliers(outliers):
 
     return fig  # Return the figure object instead of the file name
 
+
+
+def visualize_correlation_matrix(correlation_matrix):
+    correlation_matrix = pd.DataFrame(correlation_matrix)
+    
+    # Ensure all data in the correlation matrix is numeric
+    # Convert non-numeric values to NaN (if any)
+    correlation_matrix = correlation_matrix.apply(pd.to_numeric, errors='coerce')
+    
+    # Optionally, drop rows and columns with NaN values or handle them in some way
+    correlation_matrix = correlation_matrix.dropna(axis=0, how='any')  # Drop rows with NaN values
+    correlation_matrix = correlation_matrix.dropna(axis=1, how='any')  # Drop columns with NaN values
+    
+    # Create the figure object for the plot
+    fig, ax = plt.subplots(figsize=(20, 18))  # Adjust dimensions to handle many features
+
+    # Generate the heatmap
+    sns.heatmap(
+        correlation_matrix,
+        annot=False,             # Remove annotations for clarity
+        cmap="coolwarm",         # Use a color scheme
+        cbar=True,               # Show color bar
+        xticklabels=True,        # Show x-axis labels
+        yticklabels=True,        # Show y-axis labels
+        ax=ax                    # Pass the axis to the heatmap
+    )
+
+    # Rotate tick labels for clarity
+    plt.xticks(rotation=90, fontsize=10)
+    plt.yticks(rotation=0, fontsize=10)
+
+    # Add titles
+    ax.set_title("Correlation Matrix Heatmap", fontsize=20, fontweight="bold")
+
+    return fig  # Return the figure object instead of the file name
+
 def create_directory_for_file(file_name):
     directory_name = os.path.splitext(file_name)[0]
     if not os.path.exists(directory_name):
@@ -294,7 +348,7 @@ def save_chart(chart, directory_name, chart_name):
 
     return chart_path  # Return the saved chart path
 
-if  __name__== "__main__"  :
+if  "__name__" == "__main__" :
     parser = argparse.ArgumentParser(description="Analyze a CSV file using OpenAI-powered functions.")
     parser.add_argument("file_name", type=str, help="Name of the CSV file to analyze.")
     args = parser.parse_args()
@@ -324,6 +378,9 @@ if  __name__== "__main__"  :
                     if tool["name"] == "outlier_detection":
                         chart = visualize_outliers(result)
                         chart_paths.append(save_chart(chart, directory_name, "outliers.png"))
+                    elif tool["name"] == "correlation_analysis":
+                        chart = visualize_correlation_matrix(result)
+                        chart_paths.append(save_chart(chart, directory_name, "correlation.png"))
 
 
         storytelling_tool = next((tool for tool in tools if tool["name"] == "storytelling"), None)
@@ -331,4 +388,6 @@ if  __name__== "__main__"  :
             storytelling_result = request_llm_storytelling(information, analysis_results, chart_paths)
             save_to_readme(storytelling_result, storytelling_tool, directory_name)  # Pass directory_name here
         else:
-            save_to_readme(None, storytelling_tool, directory_name)  # Pass directory_name here
+            save_to_readme(None, storytelling_tool, directory_name)  # Pass directory_name here 
+
+
