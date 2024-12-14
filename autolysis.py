@@ -13,6 +13,14 @@
 # ]
 # ///
 
+import shutil
+
+def remove_readonly(func, path, excinfo):
+    os.chmod(path, 0o666)  # Change file permissions
+    func(path)
+
+shutil.rmtree(repo_path, onerror=remove_readonly)
+
 import requests
 import json
 import os
