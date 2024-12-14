@@ -19,7 +19,17 @@ def remove_readonly(func, path, excinfo):
     os.chmod(path, 0o666)  # Change file permissions
     func(path)
 
-shutil.rmtree(repo_path, onerror=remove_readonly)
+try:
+    shutil.rmtree(repo_path, onerror=remove_readonly)
+except PermissionError as e:
+    print(f"Failed to remove {repo_path}: {e}")
+
+# Ensure 'msg' is defined
+msg = "An error occurred during cloning or cleanup."
+try:
+    log(f"{msg} [red]UNEXPECTED FAILURE[/red] {e}", last=True)
+except NameError as e:
+    print(f"NameError: {e}. Ensure 'msg' is defined.")
 
 import requests
 import json
