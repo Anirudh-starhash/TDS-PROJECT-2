@@ -284,7 +284,7 @@ def save_to_readme(storytelling_result, tool, directory_name, tool_name="storyte
         os.makedirs(folder_path, exist_ok=True)
 
         # Define the path for the README.md
-        readme_path = os.path.join(folder_path, "README.md")
+        readme_path = os.path.join(folder_path,"README.md")
 
         # Open the README.md file to write the storytelling results
         with open(readme_path, "a",encoding="utf-8") as readme_file:
