@@ -13,23 +13,7 @@
 # ]
 # ///
 
-import shutil
 
-def remove_readonly(func, path, excinfo):
-    os.chmod(path, 0o666)  # Change file permissions
-    func(path)
-
-try:
-    shutil.rmtree(repo_path, onerror=remove_readonly)
-except PermissionError as e:
-    print(f"Failed to remove {repo_path}: {e}")
-
-# Ensure 'msg' is defined
-msg = "An error occurred during cloning or cleanup."
-try:
-    log(f"{msg} [red]UNEXPECTED FAILURE[/red] {e}", last=True)
-except NameError as e:
-    print(f"NameError: {e}. Ensure 'msg' is defined.")
 
 import requests
 import json
@@ -405,7 +389,7 @@ if  __name__ == "__main__" :
         analysis_results = {}
         chart_paths = []
         
-        directory_name = create_directory_for_file(args.file_name)
+        directory_name = create_directory_for_file(os.path.basename(args.file_name))
         for tool in tools:
             if tool["name"] == "storytelling":
                 continue
