@@ -72,23 +72,6 @@ def define_analysis_tools():
             }
         },
         {
-            "name": "correlation_analysis",
-            "description": "Compute the correlation matrix for numeric data.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "array",
-                        "items": {
-                            "type": "array",
-                            "items": {"type": "number"}
-                        }
-                    }
-                },
-                "required": ["data"]
-            }
-        },
-        {
             "name": "storytelling",
             "description": "Write a story about the dataset analysis including data, insights, and implications.",
             "parameters": {
@@ -296,42 +279,6 @@ def visualize_outliers(outliers):
 
     return fig  # Return the figure object instead of the file name
 
-
-
-def visualize_correlation_matrix(correlation_matrix):
-    correlation_matrix = pd.DataFrame(correlation_matrix)
-    
-    # Ensure all data in the correlation matrix is numeric
-    # Convert non-numeric values to NaN (if any)
-    correlation_matrix = correlation_matrix.apply(pd.to_numeric, errors='coerce')
-    
-    # Optionally, drop rows and columns with NaN values or handle them in some way
-    correlation_matrix = correlation_matrix.dropna(axis=0, how='any')  # Drop rows with NaN values
-    correlation_matrix = correlation_matrix.dropna(axis=1, how='any')  # Drop columns with NaN values
-    
-    # Create the figure object for the plot
-    fig, ax = plt.subplots(figsize=(20, 18))  # Adjust dimensions to handle many features
-
-    # Generate the heatmap
-    sns.heatmap(
-        correlation_matrix,
-        annot=False,             # Remove annotations for clarity
-        cmap="coolwarm",         # Use a color scheme
-        cbar=True,               # Show color bar
-        xticklabels=True,        # Show x-axis labels
-        yticklabels=True,        # Show y-axis labels
-        ax=ax                    # Pass the axis to the heatmap
-    )
-
-    # Rotate tick labels for clarity
-    plt.xticks(rotation=90, fontsize=10)
-    plt.yticks(rotation=0, fontsize=10)
-
-    # Add titles
-    ax.set_title("Correlation Matrix Heatmap", fontsize=20, fontweight="bold")
-
-    return fig  # Return the figure object instead of the file name
-
 def create_directory_for_file(file_name):
     directory_name = os.path.splitext(file_name)[0]
     if not os.path.exists(directory_name):
@@ -377,9 +324,6 @@ if  __name__== "__main__"  :
                     if tool["name"] == "outlier_detection":
                         chart = visualize_outliers(result)
                         chart_paths.append(save_chart(chart, directory_name, "outliers.png"))
-                    elif tool["name"] == "correlation_analysis":
-                        chart = visualize_correlation_matrix(result)
-                        chart_paths.append(save_chart(chart, directory_name, "correlation.png"))
 
 
         storytelling_tool = next((tool for tool in tools if tool["name"] == "storytelling"), None)
