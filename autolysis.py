@@ -111,20 +111,27 @@ import requests
 import base64
 
 def request_llm_storytelling(info, analysis_results, chart_path):
-    
+    import base64
+    import json
+    import requests  # Ensure requests is imported
+
+    # Open the chart file and encode it to base64
     with open(chart_path, 'rb') as image_file:
-    image_data = image_file.read()
+        image_data = image_file.read()
 
     # Encode the image data to base64
     base64_image = base64.b64encode(image_data).decode('utf-8')
+
+    # Prepare the prompt with dataset info and analysis results
     prompt = (
         "You are a data analysis assistant. Based on the dataset info, analysis results, and provided charts, write a concise and structured narrative that includes:\n"
         "1. A summary of the dataset, including key characteristics like missing data, outliers, and correlations.\n"
         "2. The analysis performed, focusing on outlier detection and correlation analysis.\n"
         "3. Insights discovered from the analysis, including trends in data like polarized ratings, correlations, etc.\n"
         "4. Implications of the findings and recommendations based on insights.\n\n"
-        "Here is the dataset information:\n" + json.dumps(info, indent=2) + "\n\n"
-        "Here is the analysis results:\n" + json.dumps(analysis_results, indent=2) + "\n\n"
+        f"Here is the dataset information:\n{json.dumps(info, indent=2)}\n\n"
+        f"Here is the analysis results:\n{json.dumps(analysis_results, indent=2)}\n\n"
+        "Extract the Information from the image given!"
     )
 
     try:
@@ -133,31 +140,24 @@ def request_llm_storytelling(info, analysis_results, chart_path):
             "Authorization": f"Bearer {AIPROXY_TOKEN}",
             "Content-Type": "application/json"
         }
+
+        # Prepare the API payload
         data = {
             "model": "gpt-4o-mini",
-            "messages": [
+             "messages": [
                 {
-                    "role": "system", 
+                    "role": "system",
                     "content": "You are a helpful storytelling assistant."
                 },
                 {
-                    "role": "user", 
-                    "content":  [
-                        {
-                            "type": "text",
-                            "text" : prompt
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "detail": "low",
-                                "url": f"data:image/jpeg;base64,{base64_image}"
-                            }
-                        }
-                    ]
+                    "role": "user",
+                    "content": prompt
+                },
+                {
+                    "role": "user",
+                    "content": f"data:image/jpeg;base64,{base64_image}"  # Pass the base64 image directly as a string
                 }
-            ],
-            
+            ]
         }
 
         # Make the API call
@@ -171,16 +171,16 @@ def request_llm_storytelling(info, analysis_results, chart_path):
         if response.status_code == 200:
             story_content = response.json()["choices"][0]["message"]["content"]
 
-            # Format the story in a way that works well with save_to_readme function
+            # Format the story for the README
             formatted_story = (
                 f"### Narrative:\n\n"
                 f"#### Summary of the Dataset:\n"
                 f"- *Total Entries*: {info.get('total_entries', 'N/A')}\n"
                 f"- *Missing Values*: {', '.join(f'{key}: {value}' for key, value in info.get('missing_values', {}).items())}\n"
-                f"- *Outliers*: {', '.join(f'{outlier}' for outlier in analysis_results.get('outliers', []))}\n\n"
+                f"- *Outliers*: {', '.join(analysis_results.get('outlier_detection', []))}\n\n"
                 f"#### The Analysis Performed:\n"
-                f"- *Outlier Detection*: {analysis_results.get('outlier_detection', 'N/A')}\n"
-                f"- *Correlation Analysis*: {analysis_results.get('correlation_analysis', 'N/A')}\n\n"
+                f"- *Outlier Detection*: {', '.join(analysis_results.get('outlier_detection', []))}\n"
+                f"- *Correlation Analysis*: {analysis_results.get('correlation_analysis', 'No correlation analysis performed.')}\n\n"
                 f"#### Insights Discovered:\n"
                 f"{story_content}\n\n"
                 f"#### Implications of the Findings:\n"
@@ -194,6 +194,7 @@ def request_llm_storytelling(info, analysis_results, chart_path):
     except Exception as e:
         print(f"Error with OpenAI request: {e}")
         return None
+
 
 
 # Filter data before analysis for each function
@@ -411,15 +412,9 @@ if  __name__ == "__main__" :
         if storytelling_tool:
             for chart_path in chart_paths:  # Iterate over every chart path
                 # Map chart filenames to the specific analysis result keys
-                if "correlation" in chart_path:
-                    analysis_result = analysis_results["correlation_analysis"]
-                elif "outlier" in chart_path:
-                    analysis_result = analysis_results["outlier_detection"]
-                else:
-                    analysis_result = "No analysis available for this chart."
 
                 # Call request_llm_storytelling for the current chart and its corresponding analysis result
-                storytelling_result = request_llm_storytelling(information, analysis_result, chart_path)
+                storytelling_result = request_llm_storytelling(information, analysis_results, chart_path)
 
                 # Save the storytelling result to the README.md for this chart
                 save_to_readme(storytelling_result, storytelling_tool, directory_name)
