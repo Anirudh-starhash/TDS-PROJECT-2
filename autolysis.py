@@ -10,6 +10,7 @@
 #   "chardet",
 #   "numpy",
 #   "ipykernel",
+#   "base64",
 # ]
 # ///
 
