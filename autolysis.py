@@ -173,19 +173,19 @@ def request_llm_storytelling(info, analysis_results, chart_path):
 
             # Format the story for the README
             formatted_story = (
-                f"### Narrative:\n\n"
-                f"#### Summary of the Dataset:\n"
-                f"- *Total Entries*: {info.get('total_entries', 'N/A')}\n"
-                f"- *Missing Values*: {', '.join(f'{key}: {value}' for key, value in info.get('missing_values', {}).items())}\n"
-                f"- *Outliers*: {', '.join(analysis_results.get('outlier_detection', []))}\n\n"
-                f"#### The Analysis Performed:\n"
-                f"- *Outlier Detection*: {', '.join(analysis_results.get('outlier_detection', []))}\n"
-                f"- *Correlation Analysis*: {analysis_results.get('correlation_analysis', 'No correlation analysis performed.')}\n\n"
-                f"#### Insights Discovered:\n"
-                f"{story_content}\n\n"
-                f"#### Implications of the Findings:\n"
-                f"- {analysis_results.get('implications', 'N/A')}\n\n"
-            )
+            f"### Narrative:\n\n"
+            f"#### Summary of the Dataset:\n"
+            f"- *Total Entries*: {info.get('total_entries', 'N/A')}\n"
+            f"- *Missing Values*: {', '.join(f'{key}: {str(value)}' for key, value in info.get('missing_values', {}).items())}\n"
+            f"- *Outliers*: {', '.join(map(str, analysis_results.get('outlier_detection', [])))}\n\n"
+            f"#### The Analysis Performed:\n"
+            f"- *Outlier Detection*: {', '.join(map(str, analysis_results.get('outlier_detection', [])))}\n"
+            f"- *Correlation Analysis*: {analysis_results.get('correlation_analysis', 'No correlation analysis performed.')}\n\n"
+            f"#### Insights Discovered:\n"
+            f"{story_content}\n\n"
+            f"#### Implications of the Findings:\n"
+            f"- {analysis_results.get('implications', 'N/A')}\n\n"
+        )
 
             return formatted_story
         else:
@@ -395,7 +395,8 @@ if  __name__ == "__main__" :
             if relevant_data:
                 print(f"Requesting analysis for {tool['name']}...")
                 result = request_llm_analysis(information, {"data": relevant_data}, tool)
-                result=json.loads(result)["data"]
+                if result!=None:
+                    result=json.loads(result)["data"]
 
                 if result:
                     print(f"Results for {tool['name']}:\n", result)
