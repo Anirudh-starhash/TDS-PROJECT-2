@@ -23,6 +23,7 @@ import seaborn as sns
 import argparse
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
+import base64
 
 AIPROXY_TOKEN = os.environ["AIPROXY_TOKEN"]
 
@@ -109,7 +110,7 @@ def define_analysis_tools():
     
 import json
 import requests
-import base64
+
 
 def request_llm_storytelling(info, analysis_results, chart_path):
     import base64
