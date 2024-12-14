@@ -8,39 +8,51 @@
 - **Outliers**: 
 
 #### The Analysis Performed:
-- **Outlier Detection**: [4, 5, 1, 2, 2, 1, 4, 3, 3, 1, 3, 2, 2, 4, 5, 4, 3, 4, 4, 4, 4, 3, 3, 2, 3, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 4, 3, 3, 4, 4, 2, 3, 3, 3, 3, 2, 3, 4, 3, 3, 3, 2, 5, 2, 3, 4, 3, 3, 3, 3, 3, 4, 5, 3, 1, 4, 2, 2, 2, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 4, 4, 3, 2, 2, 2, 4]
-- **Correlation Analysis**: [[4, 5, 1], [2, 2, 1], [4, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 4, 1], [4, 4, 1], [3, 3, 1], [5, 5, 2], [4, 5, 1], [3, 4, 2], [4, 4, 2], [4, 4, 1], [4, 4, 1], [2, 2, 1], [3, 3, 1], [2, 3, 1], [3, 3, 1], [3, 4, 1], [3, 3, 2], [4, 4, 3], [4, 4, 1], [4, 4, 2], [3, 4, 2], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 4, 1], [3, 3, 1], [2, 2, 1], [4, 4, 2], [3, 4, 2], [3, 4, 1], [3, 3, 1], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [1, 2, 1], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 4, 1], [3, 4, 1], [2, 2, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 3, 1], [3, 4, 1], [2, 3, 1], [2, 2, 1], [3, 3, 1], [3, 3, 1], [3, 4, 2], [5, 4, 3], [2, 2, 1], [3, 4, 1], [3, 4, 1], [3, 3, 1], [2, 3, 1]]
+- **Outlier Detection**: [4, 5, 1, 2, 2, 1, 4, 3, 3, 3, 3, 2, 4, 5, 4, 4, 4, 4, 4, 2, 3, 2, 3, 4, 3, 3, 3, 3, 3, 4, 4, 4, 3, 2, 3, 4, 4, 2, 3, 5, 4, 2, 3, 3, 4, 3, 4, 5, 2, 3, 4, 3, 3, 2, 3, 4, 3, 2, 3, 3, 3, 3, 3, 3, 3, 4, 5, 3, 2, 4, 3, 4, 2, 3, 3, 3, 3, 4, 3, 4]
+- **Correlation Analysis**: [[4, 5, 1], [2, 2, 1], [4, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 4, 1], [4, 4, 1], [3, 3, 1], [5, 5, 2], [4, 5, 1], [3, 4, 2], [4, 4, 2], [4, 4, 1], [4, 4, 1], [2, 2, 1], [3, 3, 1], [2, 2, 2], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [4, 4, 2], [2, 2, 1], [4, 4, 2], [2, 3, 1], [2, 3, 1], [2, 3, 1], [3, 3, 2], [4, 4, 1], [3, 3, 1], [3, 4, 2], [3, 3, 1], [2, 3, 1], [3, 3, 1], [3, 3, 1], [3, 4, 2], [4, 3, 3], [3, 2, 2], [3, 4, 1], [3, 3, 2], [3, 3, 2], [3, 3, 1], [3, 3, 1], [3, 4, 1], [3, 3, 1], [2, 2, 1], [4, 4, 2], [3, 4, 2], [3, 4, 1], [3, 3, 1], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [1, 2, 1], [3, 4, 1], [3, 3, 1], [3, 3, 1], [3, 4, 1], [3, 4, 1], [2, 2, 1], [3, 3, 1], [3, 3, 1], [3, 3, 1], [3, 3, 2], [3, 3, 1], [3, 4, 1], [2, 3, 1], [2, 2, 1], [3, 3, 1], [3, 3, 1], [3, 4, 2], [5, 4, 3], [2, 2, 1], [3, 4, 1], [3, 4, 1], [3, 3, 1], [2, 3, 1]]
 
 #### Insights Discovered:
-### Narrative Report on Dataset Analysis
+### Narrative Summary of Data Analysis
 
-#### 1. Summary of the Dataset
-The dataset comprises 2,652 records detailing various films, including attributes such as release date, language, type, title, contributors, and ratings on overall performance, quality, and repeatability. It contains several notable characteristics:
-- **Missing Data**: The dataset shows missing values primarily in the 'date' (99 entries) and 'by' (262 entries) columns. The other columns are complete, indicating well-maintained data integrity.
-- **Outliers**: Outlier detection identified values that significantly deviate from the norm in rating scores, suggesting polarized ratings, particularly in overall and quality metrics.
-- **Correlations**: A thorough correlation analysis yielded insights into relationships between different rating criteria, pointing toward potential overlapping perceptions of quality and overall enjoyment by viewers.
+#### 1. Dataset Summary
+The dataset consists of 2,652 entries capturing movie ratings, with the following columns: `date`, `language`, `type`, `title`, `by`, `overall`, `quality`, and `repeatability`. Among these, missing data is prevalent in the `date` (99 entries) and `by` (262 entries) columns, while no missing values are observed in the other fields. Key characteristics are as follows:
+
+- **Language**: Predominantly in English (1,306 entries); 11 unique languages recorded.
+- **Type**: Majority classified as "movie" (2,211 entries); 8 unique types noted.
+- **Overall Ratings**: Mean of 3.05, with a maximum value of 5 and a slight standard deviation (0.76), indicating a moderate level of agreement among ratings.
+- **Quality Ratings**: Mean score of 3.21, with a standard deviation of 0.80, suggesting variability in perceived quality.
+- **Repeatability**: Mean score of approximately 1.49 with a clear concentration of ratings at 1, indicating most reviewers felt the content wasn’t worth repeated viewing.
+
+Missing values and potential outliers were identified in overall, quality, and repeatability ratings.
 
 #### 2. Analysis Performed
-The analysis was concentrated on two main areas:
-- **Outlier Detection**: Various outlier values from the ratings were examined, leading to the identification of fluctuations particularly among the values of overall and quality ratings. This assessment helps clarify how extreme scores impact the average ratings and overall dataset behavior.
-- **Correlation Analysis**: This analysis focused on relationships between the overall rating, quality, and repeatability scores. By inspecting correlations, we can deduce that higher quality ratings generally coincide with higher overall ratings, indicating a possibly strong positive correlation.
+To assess the dataset comprehensively, two primary analyses were conducted: **outlier detection** and **correlation analysis**.
 
-#### 3. Insights Discovered from the Analysis
-Several insightful trends emerged from the analyses:
-- **Polarized Ratings**: The ratings for overall performance and quality exhibit polarization, evident through the presence of outliers. Many entries with a perfect score of 5 are juxtaposed with several lower scores, indicating diverging opinions about the films.
-- **Consistent Quality Ratings**: Across most data points, the quality ratings tend to hover around the middle range (3 to 4), with a notable tendency for higher quality scores to correlate with higher overall ratings. This suggests that while viewers might be lenient on certain aspects, they are critical of overall enjoyment.
-- **Language and Type Trends**: The dataset mainly features English movies, and most entries are classified as films rather than other media types, which emphasizes a clear trend in language preference.
+- **Outlier Detection** utilized statistical methods to identify extreme values in the ratings. A variety of values, particularly high and low scores in overall and quality ratings, were flagged as outliers.
+- **Correlation Analysis** aimed to uncover relationships between different rating categories (`overall`, `quality`, and `repeatability`). The resulting data highlighted several significant correlations, particularly between quality and overall ratings, suggesting that higher ratings on one often reflected positively on the other.
+
+#### 3. Insights Discovered
+Key insights derived from the analysis include:
+
+- **Polarized Ratings**: The presence of outliers shows a split in how movies are rated, with certain titles garnering either very high or very low ratings. This could indicate a polarized audience perception, reflecting varying themes or quality that resonate differently among viewers.
+- **Strong Correlation**: A robust positive correlation between `overall` and `quality` ratings was observed, indicating that movies perceived as high quality also tend to receive higher overall ratings. This reinforces the idea that quality significantly influences viewer satisfaction.
+- **Low Repeatability**: The `repeatability` scores echoed findings of polarized ratings, suggesting many viewers do not find the reviewed content deserving of a second viewing, regardless of its overall quality or rating score.
 
 #### 4. Implications and Recommendations
-The implications of these findings are multifaceted:
-- **Targeted Marketing**: The polarized nature of ratings may hint at niche audiences for certain films. Marketing strategies could benefit from focusing on these polarized perceptions, promoting films that align with viewer preferences.
-- **Quality Assessment**: Continuous capture and analysis of quality ratings can provide creators and studios with direct feedback on viewer perceptions. Thus, iterative improvements could be made based on consistent feedback from quality assessments.
-- **Data Integrity Improvement**: Addressing the missing values specifically in the 'by' attribute may lead to more comprehensive insights about contributors and enhance engagement with audiences, particularly filmmakers or actors with variable popularity.
-  
-Overall, the dataset indicates valuable pathways for further exploration of viewer engagement and film quality. Implementing the recommendations can position studios to align their offerings better with audience expectations and preferences. 
+The findings present several important implications for stakeholders:
 
-![Outlier Detection Chart](media\\outliers.png)  
-![Correlation Analysis Chart](media\\correlation.png)
+- **Targeted Marketing**: For studios and marketers, understanding polarized ratings can help in targeting campaigns effectively, focusing on specific genres or themes that resonate strongly with segments of the audience.
+- **Content Alignment**: Given the correlation between quality and overall ratings, enhancing production quality might be pivotal in elevating average ratings across the board. This could involve investment in better storytelling, cinematography, or casting.
+- **Audience Engagement**: Addressing reasons behind low repeatability could be crucial. Engaging audiences post-release through content that facilitates discussion or deeper interaction might encourage revisits, enhancing the film’s longevity in viewer's minds.
+
+Moreover, collecting more comprehensive data on viewer demographics and opinions could help refine these insights and inform more granular marketing strategies in the future. 
+
+### Visual Aids
+The analysis was supported by two visuals:
+1. **Outliers Chart**: Illustrates the distribution of ratings, highlighting identified outliers.
+2. **Correlation Chart**: Maps correlations between rating dimensions, providing visual context to the relationships observed.
+
+These visuals can help stakeholders easily interpret the findings and implications of the analysis.
 
 #### Implications of the Findings:
 - N/A
