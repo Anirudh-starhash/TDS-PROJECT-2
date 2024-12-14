@@ -108,8 +108,15 @@ def define_analysis_tools():
     
 import json
 import requests
+import base64
 
-def request_llm_storytelling(info, analysis_results, chart_paths):
+def request_llm_storytelling(info, analysis_results, chart_path):
+    
+    with open(chart_path, 'rb') as image_file:
+    image_data = image_file.read()
+
+    # Encode the image data to base64
+    base64_image = base64.b64encode(image_data).decode('utf-8')
     prompt = (
         "You are a data analysis assistant. Based on the dataset info, analysis results, and provided charts, write a concise and structured narrative that includes:\n"
         "1. A summary of the dataset, including key characteristics like missing data, outliers, and correlations.\n"
@@ -117,8 +124,7 @@ def request_llm_storytelling(info, analysis_results, chart_paths):
         "3. Insights discovered from the analysis, including trends in data like polarized ratings, correlations, etc.\n"
         "4. Implications of the findings and recommendations based on insights.\n\n"
         "Here is the dataset information:\n" + json.dumps(info, indent=2) + "\n\n"
-        "Here are the analysis results:\n" + json.dumps(analysis_results, indent=2) + "\n\n"
-        "Here are the chart paths (corresponding to the analyses):\n" + json.dumps(chart_paths, indent=2)
+        "Here is the analysis results:\n" + json.dumps(analysis_results, indent=2) + "\n\n"
     )
 
     try:
@@ -130,10 +136,28 @@ def request_llm_storytelling(info, analysis_results, chart_paths):
         data = {
             "model": "gpt-4o-mini",
             "messages": [
-                {"role": "system", "content": "You are a helpful storytelling assistant."},
-                {"role": "user", "content": prompt}
+                {
+                    "role": "system", 
+                    "content": "You are a helpful storytelling assistant."
+                },
+                {
+                    "role": "user", 
+                    "content":  [
+                        {
+                            "type": "text",
+                            "text" : prompt
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "detail": "low",
+                                "url": f"data:image/jpeg;base64,{base64_image}"
+                            }
+                        }
+                    ]
+                }
             ],
-            "detail": "low" 
+            
         }
 
         # Make the API call
@@ -261,7 +285,7 @@ def save_to_readme(storytelling_result, tool, directory_name, tool_name="storyte
         readme_path = os.path.join(folder_path, "README.md")
 
         # Open the README.md file to write the storytelling results
-        with open(readme_path, "w",encoding="utf-8") as readme_file:
+        with open(readme_path, "a",encoding="utf-8") as readme_file:
             if storytelling_result:
                 # Write the tool name as a header
                 readme_file.write(f"## {tool_name} Result for {directory_name}.csv:\n\n")
@@ -348,7 +372,7 @@ def save_chart(chart, directory_name, chart_name):
 
     return chart_path  # Return the saved chart path
 
-if  "__name__" == "__main__" :
+if  __name__ == "__main__" :
     parser = argparse.ArgumentParser(description="Analyze a CSV file using OpenAI-powered functions.")
     parser.add_argument("file_name", type=str, help="Name of the CSV file to analyze.")
     args = parser.parse_args()
@@ -385,9 +409,21 @@ if  "__name__" == "__main__" :
 
         storytelling_tool = next((tool for tool in tools if tool["name"] == "storytelling"), None)
         if storytelling_tool:
-            storytelling_result = request_llm_storytelling(information, analysis_results, chart_paths)
-            save_to_readme(storytelling_result, storytelling_tool, directory_name)  # Pass directory_name here
+            for chart_path in chart_paths:  # Iterate over every chart path
+                # Map chart filenames to the specific analysis result keys
+                if "correlation" in chart_path:
+                    analysis_result = analysis_results["correlation_analysis"]
+                elif "outlier" in chart_path:
+                    analysis_result = analysis_results["outlier_detection"]
+                else:
+                    analysis_result = "No analysis available for this chart."
+
+                # Call request_llm_storytelling for the current chart and its corresponding analysis result
+                storytelling_result = request_llm_storytelling(information, analysis_result, chart_path)
+
+                # Save the storytelling result to the README.md for this chart
+                save_to_readme(storytelling_result, storytelling_tool, directory_name)
         else:
-            save_to_readme(None, storytelling_tool, directory_name)  # Pass directory_name here 
+            save_to_readme(None, storytelling_tool, directory_name)
 
 

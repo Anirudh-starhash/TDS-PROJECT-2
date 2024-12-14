@@ -1,55 +1,5 @@
-## storytelling Result for goodreads.csv:
+## storytelling Result for storytelling:
 
-### Narrative:
-
-#### Summary of the Dataset:
-- **Total Entries**: N/A
-- **Missing Values**: book_id: 0, goodreads_book_id: 0, best_book_id: 0, work_id: 0, books_count: 0, isbn: 700, isbn13: 585, authors: 0, original_publication_year: 21, original_title: 585, title: 0, language_code: 1084, average_rating: 0, ratings_count: 0, work_ratings_count: 0, work_text_reviews_count: 0, ratings_1: 0, ratings_2: 0, ratings_3: 0, ratings_4: 0, ratings_5: 0, image_url: 0, small_image_url: 0
-- **Outliers**: 
-
-#### The Analysis Performed:
-- **Outlier Detection**: [4.34, 4.44, 3.57, 4.25, 3.89, 4.26, 4.25, 3.79, 3.85, 4.24, 4.26, 4.24, 4.14, 3.87, 4.1, 4.11, 4.3, 4.53, 4.34, 4.03, 4.46, 3.77, 4.37, 4.53, 4.61, 3.79, 4.54, 3.64, 3.73, 4.03, 4.45, 3.84, 4.06, 3.75, 4.17, 3.96, 4.38, 4.03, 4.28, 4.24, 4.22, 3.88, 4.07, 3.97, 4.01, 4.12, 4.02, 4.02, 4.04, 3.69, 4.06, 3.98, 4.34, 3.77, 4.3, 3.86, 4.12, 3.93, 3.97, 4.35, 3.89, 3.66]
-- **Correlation Analysis**: [[272, 2008, 4.34, 4780653, 4942365, 155254, 66715, 127936, 560092, 1481305, 2706317], [491, 1997, 4.44, 4602479, 4800065, 75867, 75504, 101676, 455024, 1156318, 3011543], [226, 2005, 3.57, 3866839, 3916824, 95009, 456191, 436802, 793319, 875073, 1355439], [487, 1960, 4.25, 3198671, 3340896, 72586, 60427, 117415, 446835, 1001952, 1714267], [1356, 1925, 3.89, 2683664, 2773745, 51992, 86236, 197621, 606158, 936012, 947718], [226, 2012, 4.26, 2346404, 2478609, 140739, 47994, 92723, 327550, 698471, 1311871], [969, 1937, 4.25, 2071616, 2196809, 37653, 46023, 76784, 288649, 665635, 1119718], [360, 1951, 3.79, 2044241, 2120637, 44920, 109383, 185520, 455042, 661516, 709176], [311, 2000, 3.85, 2001311, 2078754, 25112, 77841, 145740, 458429, 716569, 680175], [3455, 1813, 4.24, 2035490, 2191465, 49152, 54700, 86485, 284852, 609755, 1155673], [283, 2003, 4.26, 1813044, 1878095, 59730, 34288, 59980, 226062, 628174, 929591], [210, 2011, 4.24, 1903563, 2216814, 101023, 36315, 82870, 310297, 673028, 1114304], [995, 1949, 4.14, 1956832, 2053394, 45518, 41845, 86425, 324874, 692021, 908229], [896, 1945, 3.87, 1881700, 1982987, 35472, 66854, 135147, 433432, 698642, 648912], [710, 1947, 4.1, 1972666, 2024493, 20825, 45225, 91270, 355756, 656870, 875372], [274, 2005, 4.11, 1808403, 1929834, 62543, 54835, 86051, 285413, 667485, 836050], [201, 2009, 4.3, 1831039, 1988079, 88538, 10492, 48030, 262010, 687238, 980309], [376, 1999, 4.53, 1832823, 1969375, 36099, 6716, 20413, 166129, 509447, 1266670], [566, 1954, 4.34, 1766803, 1832541, 15333, 38031, 55862, 202332, 493922, 1042394], [239, 2010, 4.03, 1719760, 1870748, 96274, 30144, 110498, 373060, 618271, 738775], [307, 2003, 4.46, 1735368, 1840548, 28685, 9528, 31577, 180210, 494427, 1124806], [183, 2002, 3.77, 1605173, 1661562, 36642, 62777, 131188, 404699, 583575, 479323], [398, 1998, 4.37, 1779331, 1906199, 34172, 8253, 42251, 242345, 548266, 1065084], [332, 2000, 4.53, 1753043, 1868642, 31084, 6676, 20210, 151785, 494926, 1195045], [263, 2007, 4.61, 1746574, 1847395, 51942, 9363, 22245, 113646, 383914, 1318227], [350, 2003, 3.79, 1447148, 1557292, 41560, 71345, 126493, 340790, 539277, 479387], [275, 2005, 4.54, 1678823, 1785676, 27520, 7308, 21516, 136333, 459028, 1161491], [458, 1954, 3.64, 1605019, 1671484, 26886, 92779, 160295, 425648, 564916, 427846], [1937, 1595, 3.73, 1628519, 1672889, 14778, 57980, 153179, 452673, 519822, 489235], [196, 2012, 4.03, 512475, 1626519, 121614, 38874, 80807, 280331, 616031, 610476], [183, 2009, 4.45, 1531753, 1603545, 78204, 10235, 25117, 134887, 490754, 942552], [373, 1937, 3.84, 1467496, 1518741, 24642, 46630, 110856, 355169, 532291, 473795], [220, 1997, 4.08, 1300209, 1418172, 25605, 23500, 59033, 258700, 517157, 559782], [169, 2011, 3.67, 1338493, 1436818, 75437, 165455, 152293, 252185, 294976, 571909], [458, 1988, 3.82, 1299566, 1403995, 55781, 74846, 123614, 289143, 412180, 504212], [192, 1993, 4.12, 1296825, 1345445, 54084, 26497, 59652, 225326, 448691, 585279], [474, 1950, 4.19, 1531800, 1584884, 15186, 19309, 55542, 262038, 513366, 734629], [167, 2003, 3.95, 746287, 1308667, 43382, 44339, 85429, 257805, 427210, 493884], [101, 1996, 4.45, 1319204, 1442220, 46205, 19988, 28983, 114092, 404583, 874574], [185, 2006, 3.51, 1181647, 1206597, 49714, 100373, 149549, 310212, 332191, 314272], [159, 2005, 4.23, 1366265, 1411114, 46006, 18303, 48294, 219638, 435514, 689365], [1707, 1868, 4.04, 1257121, 1314293, 17090, 31645, 70011, 250794, 426280, 535563], [2568, 1847, 4.1, 1198557, 1286135, 31212, 35132, 64274, 212294, 400214, 574221], [190, 1996, 4.06, 1053403, 1076749, 17279, 41395, 63432, 176469, 298259, 497194], [264, 2001, 3.88, 1003228, 1077431, 42962, 39768, 74331, 218702, 384164, 360466], [128, 2006, 4.07, 1068146, 1108839, 55732, 16705, 49832, 200154, 417328, 424820], [251, 2005, 4.36, 1159741, 1287798, 93611, 17892, 35360, 135272, 377218, 722056], [507, 1953, 3.97, 570498, 1176240, 30694, 28366, 64289, 238242, 426292, 419051], [194, 2006, 3.52, 1149630, 1199000, 44020, 102837, 160660, 294207, 290612, 350684], [39, 1974, 4.29, 1016888, 1023781, 9234, 16590, 30792, 139024, 293222, 544153], [178, 2007, 4.12, 1154031, 1241799, 51589, 34122, 65349, 203466, 356048, 582814], [185, 2007, 3.69, 1134511, 1176642, 35216, 83094, 124293, 260763, 309358, 399134], [217, 2002, 3.86, 1104021, 1125231, 18280, 50563, 88536, 240157, 337943, 408032], [257, 1979, 4.2, 936782, 1006479, 20345, 21764, 41962, 145173, 299579, 498001], [515, 1932, 3.97, 1022601, 1079135, 20095, 26367, 60328, 219895, 389379, 383166], [183, 2008, 3.7, 1070245, 1107709, 44550, 100994, 114893, 213402, 267706, 410714], [125, 2001, 4.01, 916189, 937393, 26522, 17500, 45455, 185631, 347540, 341267], [2277, 1884, 3.8, 953758, 1001491, 12448, 28467, 76630, 255722, 344356, 296316], [180, 1952, 4.15, 1064521, 1084842, 13044, 18450, 41124, 191415, 346090, 487763], [183, 2003, 3.85, 867553, 915790, 35796, 21049, 58117, 218218, 355925, 262481], [14, 2015, 3.88, 1008778, 1226485, 93600, 27773, 73897, 273817, 488447, 362551], [287, 1995, 3.94, 953970, 994914, 14915, 38382, 64591, 198764, 313147, 380030], [2498, 1847, 3.82, 899195, 1001135, 26157, 46469, 84084, 215320, 309180, 346082], [125, 2004, 4.06, 863879, 887880, 30719, 17547, 42763, 162573, 314003, 350994], [241, 1969, 4.06, 846488, 891762, 19646, 24964, 45518, 152442, 300948, 367890], [409, 1936, 4.28, 873981, 897303, 16050, 19996, 33136, 116160, 234290, 493721], [197, 2007, 4.34, 818742, 866065, 43645, 6509, 18015, 99030, 295817, 446694], [128, 1999, 4.21, 888806, 954905, 47116, 14286, 38658, 143440, 297501, 461020], [164, 2012, 4.07, 836362, 947338, 55873, 10641, 44620, 182131, 339977, 369969], [224, 1985, 4.3, 813439, 873417, 38054, 15330, 27612, 103439, 264207, 462829], [2618, 1818, 3.75, 808589, 883563, 19993, 29366, 74142, 231022, 300495, 248538], [289, 1977, 4.17, 791850, 830881, 14936, 18487, 28981, 123862, 277393, 382158], [161, 2008, 3.84, 749780, 777560, 39778, 44215, 62501, 154906, 227180, 288758], [187, 2005, 4.09, 783470, 831285, 47128, 16940, 44232, 147324, 262932, 359857], [193, 1996, 3.75, 736498, 754498, 8157, 28973, 59309, 198555, 254836, 212825], [1969, 1811, 4.06, 738894, 779382, 11526, 18430, 34699, 141987, 272512, 311754], [138, 1998, 3.93, 747445, 764637, 15832, 15495, 43786, 176946, 269153, 259257], [129, 2003, 3.7, 665930, 679845, 8024, 24231, 58323, 192366, 226675, 178250], [1703, -720, 3.73, 670326, 710757, 8101, 29703, 65629, 183082, 224120, 208223], [1708, 1946, 4.28, 738757, 859286, 24537, 15039, 32866, 114714, 228440, 468227]]
-
-#### Insights Discovered:
-### Narrative Summary of Analysis of Goodreads Dataset
-
-#### 1. Dataset Overview
-The dataset comprises 10,000 unique book entries sourced from Goodreads, encapsulating various attributes such as `book_id`, `authors`, `average_rating`, and detailed ratings breakdown (1 to 5 stars) among others. Key characteristics observed include:
-
-- **Missing Data**: Certain columns exhibit missing values, predominantly in attributes like `isbn` (700 missing), `isbn13` (585), `original_publication_year` (21), `original_title` (585), and `language_code` (1084).
-- **Outliers**: Remarkable outliers were detected in the average ratings, highlighting that while most books maintain an average rating around 4, a select few stood significantly higher or lower. This included instances of books with average ratings such as 4.61 and others residing at the lower end like 3.51.
-- **Correlations**: The analysis further indicated correlations between various rating metrics and attributes. Notably, relationships arose between total ratings, number of text reviews, and average rating scores.
-
-#### 2. Analysis Methodology
-The analysis undertaken primarily involved **outlier detection** and **correlation assessment**:
-
-- **Outlier Detection**: Focusing on average ratings, we identified significant deviations within the dataset that informed us of potential books that polarized reader opinions or were particularly favored or disfavored.
-- **Correlation Analysis**: Utilizing statistical correlation to explore relationships between various numeric attributes (e.g., total ratings and average ratings), this revealed trends that could help understand user engagement and book popularity dynamics.
-
-#### 3. Key Insights
-The findings from the analysis unveiled several compelling insights:
-
-- **Polarized Ratings**: Books with extreme ratings (e.g., much higher average ratings) correlated with higher ratings counts, suggesting that books achieving high acclaim often garner a significant number of reviews. Conversely, this pattern was mirrored in less favorite titles, which also received considerable feedback but with lower ratings.
-- **Average Rating Trends**: The average rating across entries averaged approximately 4.00, with a noted maximum of 4.82, indicating an overall positive reception among readers.
-- **Authors' Influence**: Notable authors, particularly "Stephen King," consistently achieved higher engagement metrics, indicating that established authors draw more ratings and text reviews.
-
-#### 4. Implications and Recommendations
-The outcomes of the analysis hold substantial implications for publishers and marketing teams:
-
-- **Targeted Marketing Strategies**: Recognizing which books receive polarized ratings can inform targeted marketing strategies to either boost interest in the books needing more favorable reviews or leverage high acclaim to maximize visibility.
-- **Enhanced Author Engagement**: Recommendations to promote books from popular authors more prominently in marketing campaigns, potentially through special editions or author showcase events.
-- **Improved Quality of Future Publications**: Insights into reader preferences can facilitate book selection and publishing strategies, ensuring manuscripts are aligned closely with the profiles of high-rated works.
-
-### Visual Representations
-- For detailed visual justifications of the findings, refer to the following charts:
-  - **Outlier Detection Chart**: [goodreads\outliers.png]
-  - **Correlation Analysis Chart**: [goodreads\correlation.png]
-
-These analyses and subsequent recommendations aim to optimize reader engagement and book performance on platforms like Goodreads, contributing positively to the literary community and marketing efforts.
-
-#### Implications of the Findings:
-- N/A
-
+No relevant data available for this storytelling.
 
 
