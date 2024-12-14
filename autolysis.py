@@ -9,6 +9,7 @@
 #   "scikit-learn",
 #   "chardet",
 #   "numpy",
+#   "ipykernel",
 # ]
 # ///
 
