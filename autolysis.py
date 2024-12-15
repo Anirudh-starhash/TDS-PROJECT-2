@@ -421,7 +421,7 @@ if  __name__ == "__main__" :
                 storytelling_result = request_llm_storytelling(information, analysis_results, chart_path)
 
                 # Save the storytelling result to the README.md for this chart
-                save_to_readme(storytelling_result, storytelling_too,directory_name)
+                save_to_readme(storytelling_result, storytelling_tool,directory_name)
         else:
             save_to_readme(None, storytelling_tool,directory_name)
 
