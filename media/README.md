@@ -57,7 +57,7 @@ This analysis provides a comprehensive overview of the dataset summarized in the
 ### Correlation Analysis
 
 - **Overall vs. Quality**: There is a strong positive correlation of approximately 0.83, indicating that higher overall ratings tend to coincide with higher quality ratings.
-- **Overall vs. Repeatability**: A moderate correlation (0.51) suggests that items rated higher overall may have more repeatability in ratings, but it’s not overly strong.
+- **Overall vs. Repeatability**: A moderate correlation (0.51) suggests that items rated higher overall may have more repeatability in ratings, but it�s not overly strong.
 - **Quality vs. Repeatability**: A weak correlation (0.31), indicating that higher quality ratings are less likely to have repeat ratings.
 
 ### Conclusions

@@ -279,17 +279,17 @@ def request_llm_analysis(metadata, data_samples, tool):
         return None
 
 
-def save_to_readme(storytelling_result, tool, directory_name, tool_name="storytelling"):
+def save_to_readme(storytelling_result, tool,directory_name, tool_name="storytelling"):
     try:
         # Create the folder path using the provided directory_name
         folder_path = os.path.join(os.getcwd(), directory_name)
         os.makedirs(folder_path, exist_ok=True)
 
         # Define the path for the README.md
-        readme_path = os.path.join(folder_path,"README.md")
+      
 
         # Open the README.md file to write the storytelling results
-        with open(readme_path, "a",encoding="utf-8") as readme_file:
+        with open("README.md", "w",encoding="utf-8") as readme_file:
             if storytelling_result:
                 # Write the tool name as a header
                 readme_file.write(f"## {tool_name} Result for {directory_name}.csv:\n\n")
@@ -421,8 +421,8 @@ if  __name__ == "__main__" :
                 storytelling_result = request_llm_storytelling(information, analysis_results, chart_path)
 
                 # Save the storytelling result to the README.md for this chart
-                save_to_readme(storytelling_result, storytelling_tool, directory_name)
+                save_to_readme(storytelling_result, storytelling_too,directory_name)
         else:
-            save_to_readme(None, storytelling_tool, directory_name)
+            save_to_readme(None, storytelling_tool,directory_name)
 
 
